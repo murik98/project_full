@@ -1,0 +1,57 @@
+{% extends 'students/base.html' %}
+{% block title %}{{ student }}{% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-start mb-3">
+        <a href="javascript:history.back()" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Yza
+        </a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex align-items-center">
+                <h1 class="mb-4">{{ student.last_name }} {{ student.first_name }} {{ student.middle_name|default:'' }}</h1>                
+            </div>
+        </div>
+        <h2 class="mt-4">Garyndashlar</h2>
+        <a href="{% url 'relative_create' student.pk %}" class="btn btn-primary mb-3">Taze garyndash gosmak</a>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>FAA</th>
+                    <th>Garyndashlyk</th>
+                    <th>Telefon</th>
+                    <th>Adres</th>
+                    <th>Hereket</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for relative in relatives %}
+                <tr>
+                    <td>{{ relative.full_name }}</td>
+                    <td>{{ relative.get_relationship_display }}</td>
+                    <td>{{ relative.phone|default:'—' }}</td>
+                    <td>{{ relative.address|default:'—' }}</td>
+                    <td>
+                        <a href="{% url 'relative_update' student.pk relative.pk %}" class="btn btn-sm btn-warning">Redaktirlemek</a>
+                        <a href="{% url 'relative_delete' student.pk relative.pk %}" class="btn btn-sm btn-danger">Ocurmek</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Garyndashlar yok</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="d-flex gap-2">
+            <a href="{% url 'view_characteristic' student.pk %}" class="btn btn-info">
+                <i class="bi bi-file-earmark-word"></i> Yuklemek
+            </a>
+            <a href="{% url 'student_update' student.pk %}" class="btn btn-warning">Redaktirlemek</a>
+            <a href="{% url 'student_delete' student.pk %}" class="btn btn-danger">Ocurmek</a>
+            <a href="{% url 'generate_characteristics' student.pk %}" class="btn btn-info">Yuklemek</a>
+            <a href="{% url 'student_list' %}" class="btn btn-secondary">Sanawa gecmek</a>
+        </div>
+    </div>
+{% endblock %}

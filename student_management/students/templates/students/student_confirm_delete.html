@@ -1,0 +1,11 @@
+{% extends 'students\base.html' %}
+{% block title %}Talyby ocurmek{% endblock %}
+{% block content %}
+    <h1>Talyby ocurmek</h1>
+    <p>Talyby ocurmek isleyanizmi? "{{ student }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Ocurmek</button>
+        <a href="{% url 'student_detail' student.pk %}" class="btn btn-secondary">Bes etmek</a>
+    </form>
+{% endblock %}

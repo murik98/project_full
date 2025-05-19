@@ -1,0 +1,15 @@
+{% extends 'students/base.html' %}
+{% block title %}Häsiýetnama görmek{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Häsiýetnama — {{ student }}</h1>
+        {% if characteristic %}
+            <p><strong>Fayl:</strong> <a href="{{ characteristic.file.url }}">{{ characteristic.file.name }}</a></p>
+            <p><strong>Tekst:</strong> {{ characteristic.text|linebreaks }}</p>
+            <p><strong>Goşulan wagty:</strong> {{ characteristic.uploaded_at }}</p>
+        {% else %}
+            <p>Häsiýetnama ýok</p>
+        {% endif %}
+        <a href="{% url 'student_list' %}" class="btn btn-secondary mt-3">Yzyna</a>
+    </div>
+{% endblock %}

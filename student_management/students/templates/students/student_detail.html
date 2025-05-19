@@ -1,0 +1,53 @@
+{% extends 'students/base.html' %}
+{% block title %}{{ student }}{% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-start mb-3">
+        <a href="javascript:history.back()" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Yza
+        </a>
+    </div>
+    <div class="container student-detail-page">
+        <div class="row align-items-center mb-4" id="imwh">
+            <div class="row align-items-center mb-4">
+                <div class="col-12 d-flex align-items-center">
+                    <h1 class="mb-0">{{ student.last_name }} {{ student.first_name }} {{ student.middle_name|default:'' }}</h1>
+                    <div class="student-photo-wrapper ms-auto">
+                        {% if student.photo %}
+                            <img src="{{ student.photo.url }}" alt="Talybyn suraty" class="student-photo img-fluid" id="surat">
+                        {% else %}
+                            <p class="text-muted">Surat yok</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>               
+        <div class="row mb-4 student-details">
+            <div class="col-md-6 detail-card">
+                <p><strong>Familiyasy, ady atasynyn ady:</strong> {{ student.last_name }} {{ student.first_name }} {{ student.middle_name|default:'—' }}</p>
+                <p><strong>Doglan wagty:</strong> {{ student.birth_date }}</p>
+                <p><strong>Doglan yeri:</strong> {{ student.birth_place|default:'-' }}</p>
+                <p><strong>Telefon belgisi:</strong> {{ student.phone|default:'-' }}</p>
+                <p><strong>Yasayan yeri:</strong> {{ student.address|default:'-'|truncatechars:50 }}</p>
+                <p><strong>Hasiyetnama:</strong> {{ student.characteristics|default:'-'|truncatechars:150 }}</p>
+            </div>
+            <div class="col-md-6 detail-card">
+                <p><strong>Kursy:</strong> {{ student.get_course_display }}</p>
+                <p><strong>Fakulteti:</strong> {{ student.get_faculty_display }}</p>
+                <p><strong>Talyp belgisi:</strong> {{ student.student_id }}</p>
+                <p><strong>Kablu edilen yyly:</strong> {{ student.admission_year|default:'-' }}</p>
+                <p><strong>Forma 2:</strong> {{ student.forma2|default:'-'|truncatechars:150 }}</p>
+                <p><strong>Bellik:</strong> {{ student.notes|default:'-'|truncatechars:150 }}</p>
+            </div>
+        </div>
+                       
+        <div class="d-flex gap-2 flex-wrap">
+            <a href="{% url 'view_characteristic' student.pk %}" class="btn btn-info">
+                <i class="bi bi-file-earmark-word"></i> Gormek
+            </a>
+            <a href="{% url 'student_update' student.pk %}" class="btn btn-warning">Redaktirlemek</a>
+            <a href="{% url 'student_delete' student.pk %}" class="btn btn-danger">Ocurmek</a>
+            <a href="{% url 'generate_characteristics' student.pk %}" class="btn btn-info">Yuklemek (Word)</a>
+            <a href="{% url 'student_list' %}" class="btn btn-secondary">Tablisa gecmek</a>
+        </div>
+    </div>
+{% endblock %}

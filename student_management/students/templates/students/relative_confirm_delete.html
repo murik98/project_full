@@ -1,0 +1,15 @@
+{% extends 'students/base.html' %}
+{% block title %}Garyndashy ocurmek{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Garyndashy ocurmek</h1>
+        <p><strong>{{ relative.full_name }}</strong> Garyndashyny {{ student }} talypdan ocurmelimi?</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-danger">Ocurmek</button>
+                <a href="{% url 'student_detail' student.pk %}" class="btn btn-secondary">Yzyna</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

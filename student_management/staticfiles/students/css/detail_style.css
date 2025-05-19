@@ -1,0 +1,68 @@
+.student-detail-page .student-details {
+    display: flex;
+    gap: 1rem;
+}
+
+.student-detail-page .student-details .col-md-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* Увеличенный отступ между строками */
+    min-height: 300px; /* Равная высота колонок */
+}
+
+.student-detail-page .student-details .detail-card {
+    background: linear-gradient(180deg, #2b2d31, #1f2526); /* Тёмный фон */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тень */
+    transition: transform 0.3s ease; /* Плавный эффект */
+}
+
+.student-detail-page .student-details .detail-card:hover {
+    transform: translateY(-5px); /* Подъём при наведении */
+}
+
+.student-detail-page .student-details p {
+    margin: 0;
+    line-height: 1.5; /* Увеличенная высота строки */
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #f5e8d3; /* Кремовый текст */
+}
+
+.student-detail-page .student-details strong {
+    display: inline-block;
+    width: 180px; /* Увеличенная ширина заголовков */
+    font-weight: 600;
+    color: #d8a7b1; /* Светло-розовый акцент */
+}
+
+.student-detail-page .student-photo-wrapper {
+    max-width: 200px; /* Увеличенный размер фото */
+    margin-left: 30px; /* Увеличенный отступ */
+    padding: 5px;
+    background: #2b2d31; /* Тёмный фон */
+    border: 2px solid #9b1d2a; /* Бордовый контур */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.student-detail-page .student-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.student-detail-page .student-photo:hover {
+    transform: scale(1.05); /* Лёгкое увеличение при наведении */
+}
+
+.student-detail-page .student-photo-wrapper .text-muted {
+    font-size: 1rem;
+    text-align: center;
+    color: #d8a7b1;
+    margin: 0;
+    padding: 0.5rem;
+}

@@ -1,0 +1,852 @@
+/* Основные стили */
+:root {
+    --sidebar-width: 250px;
+    --primary-color: #9b1d2a; /* Яркий, насыщенный бордовый */
+    --secondary-color: #d8a7b1; /* Светло-розовый для акцентов */
+    --sidebar-bg: #2b2d31; /* Темно-серый */
+    --content-bg: #1f2526; /* Темный фон контента */
+    --text-color: #f5e8d3; /* Кремовый текст */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --text-muted: #a0a8b0; /* Для placeholder и приглушенного текста */
+    --table-border-color: #3a3f44; /* Для границ таблиц */
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--content-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Контейнер для заголовка и кнопки "Назад" */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    border-radius: 6px;
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+    transition: background-color 0.2s ease, outline 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, #5a6268, #4b5257);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(108, 117, 125, 0.3);
+}
+
+.back-button span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.back-button:hover span {
+    transform: scale(1.1);
+}
+
+.back-button i.bi-arrow-left {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.back-button:hover i.bi-arrow-left {
+    transform: translateX(-3px);
+}
+
+/* Заголовки */
+h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: color 0.3s ease;
+}
+
+h1:hover {
+    color: var(--secondary-color);
+}
+
+/* Боковая панель */
+.sidebar {
+    width: var(--sidebar-width);
+    background: linear-gradient(180deg, #2b2d31, #1f2526);
+    padding: 20px 15px;
+    border-right: 1px solid #3a3f44;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar h4 {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.sidebar h4:hover::after {
+    width: 100%;
+}
+
+/* Навигация */
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: var(--text-color);
+    transition: all 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link:hover {
+    background-color: rgba(155, 29, 42, 0.2);
+    color: var(--secondary-color);
+    transform: translateX(5px);
+}
+
+.nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: 500;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-link i {
+    margin-right: 12px;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.nav-link:hover i {
+    transform: scale(1.2);
+}
+
+/* Ripple-эффект для nav-link */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.nav-link:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Основное содержимое */
+.main-content {
+    flex: 1;
+    padding: 25px;
+    background: var(--content-bg);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+/* Контейнер */
+.container {
+    padding: 25px;
+    background: var(--content-bg);
+}
+
+/* Сообщения */
+.alert {
+    background: linear-gradient(90deg, #3a3f44, #2b2d31);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 15px;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Таблицы */
+.table {
+    width: 100%;
+    table-layout: auto;
+    background-color: #2b2d31;
+    color: var(--text-color);
+    border-radius: 8px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: var(--shadow);
+    animation: slideInTable 0.6s ease-out;
+}
+
+@keyframes slideInTable {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.table th, .table td {
+    padding: 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--table-border-color);
+    transition: background-color 0.2s ease;
+}
+
+.table th {
+    font-weight: 600;
+    background: var(--primary-color);
+    color: var(--text-color);
+    text-align: left;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.table th:hover {
+    color: var(--secondary-color);
+}
+
+.table th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.table th:hover::after {
+    width: 100%;
+}
+
+.table tbody tr {
+    transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.2s ease;
+}
+
+.table tbody tr:nth-child(odd) {
+    background: linear-gradient(90deg, #2b2d31, #2e3336); /* Лёгкий градиент для нечётных строк */
+}
+
+.table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(155, 29, 42, 0.2), rgba(155, 29, 42, 0.1));
+    transform: translateX(8px);
+    box-shadow: 0 2px 8px rgba(155, 29, 42, 0.3);
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Ширина столбцов для student_list.html */
+.student-list .table th:nth-child(1), .student-list .table td:nth-child(1) {
+    width: 30%;
+}
+
+.student-list .table th:nth-child(2), .student-list .table td:nth-child(2) {
+    width: 10%;
+}
+
+.student-list .table th:nth-child(3), .student-list .table td:nth-child(3) {
+    width: 15%;
+}
+
+.student-list .table th:nth-child(4), .student-list .table td:nth-child(4) {
+    width: 15%;
+}
+
+.student-list .table th:nth-child(5), .student-list .table td:nth-child(5) {
+    width: 15%;
+    white-space: nowrap;
+}
+
+.student-list .table th:nth-child(6), .student-list .table td:nth-child(6) {
+    width: 15%;
+    white-space: nowrap;
+}
+
+/* Ширина столбцов для relative_list.html */
+.relative-list .table th:nth-child(1), .relative-list .table td:nth-child(1) {
+    width: 25%;
+}
+
+.relative-list .table th:nth-child(2), .relative-list .table td:nth-child(2) {
+    width: 15%;
+}
+
+.relative-list .table th:nth-child(3), .relative-list .table td:nth-child(3) {
+    width: 15%;
+}
+
+.relative-list .table th:nth-child(4), .relative-list .table td:nth-child(4) {
+    width: 25%;
+}
+
+.relative-list .table th:nth-child(5), .relative-list .table td:nth-child(5) {
+    width: 20%;
+    white-space: nowrap;
+}
+
+/* Кнопки в таблице */
+.table .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    margin: 0 0.2rem;
+    border-radius: 6px;
+    line-height: 1.2;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s ease, outline 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table .btn-sm:hover {
+    transform: scale(1.05);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 6px rgba(155, 29, 42, 0.3);
+}
+
+.table .btn-sm span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.table .btn-sm:hover span {
+    transform: scale(1.1);
+}
+
+.table .btn-sm i {
+    transition: transform 0.3s ease;
+}
+
+.table .btn-sm:hover i.bi-pencil {
+    transform: rotate(45deg); /* Вращение иконки редактирования */
+}
+
+.table .btn-sm:hover i.bi-trash {
+    transform: scale(1.2); /* Увеличение иконки удаления */
+}
+
+/* Стили для кнопок */
+.btn {
+    position: relative;
+    transition: background-color 0.2s ease, outline 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 6px rgba(155, 29, 42, 0.3);
+}
+
+.btn span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.btn:hover span {
+    transform: scale(1.1);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-color);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #7a1621, #9b1d2a);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(155, 29, 42, 0.3);
+}
+
+.btn-primary span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.btn-primary:hover span {
+    transform: scale(1.1);
+}
+
+.btn-warning {
+    background-color: #e0a800;
+    border: none;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #cc9600, #e0a800);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(224, 168, 0, 0.3);
+}
+
+.btn-warning span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.btn-warning:hover span {
+    transform: scale(1.1);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: var(--text-color);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333, #dc3545);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(220, 53, 69, 0.3);
+}
+
+.btn-danger span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.btn-danger:hover span {
+    transform: scale(1.1);
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+    color: var(--text-color);
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #138496, #17a2b8);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(23, 162, 184, 0.3);
+}
+
+.btn-info span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.btn-info:hover span {
+    transform: scale(1.1);
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: var(--text-color);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #218838, #28a745);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.btn-success:hover span {
+    transform: scale(1.1);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268, #6c757d);
+    outline: 1px solid var(--secondary-color);
+    outline-offset: 2px;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px rgba(108, 117, 125, 0.3);
+}
+
+.btn-secondary span {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.btn-secondary:hover span {
+    transform: scale(1.1);
+}
+
+.btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Лоадер для кнопок при отправке формы */
+.btn-loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--text-color);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Формы */
+.form-label {
+    font-weight: 500;
+    color: var(--text-color);
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+input.form-control, select.form-control, textarea.form-control {
+    background-color: #3a3f44;
+    color: var(--text-color);
+    border: 1px solid #4b5257;
+    border-radius: 6px;
+    padding: 10px;
+    transition: all 0.3s ease, transform 0.2s ease;
+}
+
+input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(155, 29, 42, 0.4);
+    background-color: #3a3f44;
+    color: var(--text-color);
+    transform: translateY(-2px);
+}
+
+/* Анимация для placeholder */
+input.form-control::placeholder,
+select.form-control::placeholder,
+textarea.form-control::placeholder {
+    color: var(--text-muted);
+    transition: opacity 0.3s ease;
+}
+
+input.form-control:focus::placeholder,
+select.form-control:focus::placeholder,
+textarea.form-control:focus::placeholder {
+    opacity: 0.5;
+}
+
+/* Стили для карточки логина */
+.card {
+    background: linear-gradient(135deg, #2b2d31, #1f2526);
+    border: none;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Анимация для формы логина */
+.search-form {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 220px;
+        padding: 15px 10px;
+    }
+
+    .student-list .table th:nth-child(1), .student-list .table td:nth-child(1) {
+        width: 25%;
+    }
+
+    .student-list .table th:nth-child(2), .student-list .table td:nth-child(2) {
+        width: 12%;
+    }
+
+    .student-list .table th:nth-child(3), .student-list .table td:nth-child(3) {
+        width: 18%;
+    }
+
+    .student-list .table th:nth-child(4), .student-list .table td:nth-child(4) {
+        width: 15%;
+    }
+
+    .student-list .table th:nth-child(5), .student-list .table td:nth-child(5) {
+        width: 15%;
+    }
+
+    .student-list .table th:nth-child(6), .student-list .table td:nth-child(6) {
+        width: 15%;
+    }
+
+    .relative-list .table th:nth-child(1), .relative-list .table td:nth-child(1) {
+        width: 20%;
+    }
+
+    .relative-list .table th:nth-child(2), .relative-list .table td:nth-child(2) {
+        width: 15%;
+    }
+
+    .relative-list .table th:nth-child(3), .relative-list .table td:nth-child(3) {
+        width: 15%;
+    }
+
+    .relative-list .table th:nth-child(4), .relative-list .table td:nth-child(4) {
+        width: 30%;
+    }
+
+    .relative-list .table th:nth-child(5), .relative-list .table td:nth-child(5) {
+        width: 20%;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #3a3f44;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content, .container {
+        padding: 15px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .back-button {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        animation: none; /* Отключаем анимацию появления на мобильных */
+    }
+
+    .table th, .table td {
+        min-width: 100px;
+    }
+
+    .table .btn-sm {
+        display: inline-block;
+        margin: 0.2rem;
+        width: auto;
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Отключаем некоторые анимации на мобильных */
+    .nav-link:hover {
+        transform: none;
+    }
+
+    .table tbody tr:hover {
+        transform: none;
+        box-shadow: none;
+        background: none;
+    }
+
+    .table th:hover::after {
+        width: 0;
+    }
+
+    .btn:hover, .btn-primary:hover, .btn-warning:hover, .btn-danger:hover,
+    .btn-info:hover, .btn-success:hover, .btn-secondary:hover, .back-button:hover, .table .btn-sm:hover {
+        transform: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .btn:hover span, .btn-primary:hover span, .btn-warning:hover span, .btn-danger:hover span,
+    .btn-info:hover span, .btn-success:hover span, .btn-secondary:hover span, .back-button:hover span, .table .btn-sm:hover span {
+        transform: none;
+    }
+
+    .table .btn-sm:hover i.bi-pencil, .table .btn-sm:hover i.bi-trash {
+        transform: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    .search-form input:focus,
+    .search-form .form-control:focus {
+        transform: none;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .back-button {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .back-button i.bi-arrow-left {
+        font-size: 0.9rem;
+    }
+}
+
+#h1_list {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#surat {
+    width: 20%;
+    height: 30%;
+}
+
+#imwh {
+    text-align: center;
+    text-shadow: #6c757d;
+}
+
+/* Убираем подчеркивания у ссылок */
+a, .nav-link, .btn, button {
+    text-decoration: none !important;
+}
+
+/* Поисковая форма */
+.search-form input,
+.search-form .form-control {
+    color: var(--text-color) !important;
+    background-color: rgba(36, 38, 45, 0.9);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.search-form input:focus,
+.search-form .form-control:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0 8px rgba(155, 29, 42, 0.4);
+}
+
+.search-form input::placeholder,
+.search-form .form-control::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 1;
+}
+
+.search-form input,
+.search-form .form-control {
+    border-bottom: 1px solid var(--table-border-color);
+}

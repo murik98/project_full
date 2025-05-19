@@ -1,0 +1,18 @@
+{% extends "students/base.html" %}
+
+{% block title %}Yuklemek ucin saylamak{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Hasiyetnamany yuklemek ucin talyby saylan</h2>
+    <div class="list-group mt-4">
+        {% for student in students %}
+        <a href="{% url 'upload_characteristic' student.pk %}" class="list-group-item list-group-item-action">
+            {{ student.full_name }} ({{ student.group }})
+        </a>
+        {% empty %}
+        <div class="alert alert-warning">Talyp yok</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

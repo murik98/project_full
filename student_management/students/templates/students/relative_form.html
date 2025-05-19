@@ -1,0 +1,15 @@
+{% extends 'students/base.html' %}
+{% block title %}{% if relative %}Garyndashy redaktirlemek{% else %}Garyndash gosmak{% endif %}{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">{% if relative %}Garyndashy redaktirlemek{% else %}Garyndash gosmak{% endif %} ({{ student }})</h1>
+        <form method="post" class="col-md-6">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">Yatda saklamak</button>
+                <a href="{% url 'relative_list' student.pk %}" class="btn btn-secondary">Yzyna</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
